@@ -783,6 +783,93 @@ td.center,th.center{text-align:center}
 .scan-foot .btn{height:35px}
 
 /* ============================================================
+   9.5 CÂMERA — LEITURA NA ENTRADA E NA SAÍDA
+   ============================================================ */
+body.cam-open{overflow:hidden}
+.read-bar{display:flex;align-items:center;gap:6px;margin-bottom:7px}
+.read-switch{display:flex;flex:1;padding:3px;border-radius:9px;background:var(--bg-soft);border:1px solid var(--line)}
+.read-mode{
+  flex:1;height:29px;border:0;border-radius:6px;background:transparent;color:var(--muted);
+  font-family:inherit;font-size:10.5px;font-weight:800;letter-spacing:.2px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:5px;transition:all .15s ease;
+  white-space:nowrap;
+}
+.read-mode svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.read-mode:hover{color:var(--txt)}
+.read-mode.active{background:var(--panel-3);color:var(--txt);box-shadow:var(--shadow-sm)}
+.read-cam{
+  flex-shrink:0;height:37px;padding:0 11px;border-radius:9px;
+  border:1px solid rgba(56,189,248,.42);background:var(--sky-soft);color:var(--sky);
+  font-family:inherit;font-size:10.5px;font-weight:800;letter-spacing:.2px;
+  display:inline-flex;align-items:center;gap:5px;cursor:pointer;transition:all .15s ease;
+  white-space:nowrap;
+}
+.read-cam svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.read-cam:hover{background:rgba(56,189,248,.2);border-color:rgba(56,189,248,.6)}
+#scanModal[data-mode="saida"] .read-cam{color:var(--amber);border-color:rgba(242,169,59,.42);background:var(--amber-soft)}
+#scanModal[data-mode="saida"] .read-cam:hover{background:rgba(242,169,59,.2)}
+.scan-confirm{width:100%;margin-top:7px;height:36px}
+
+#cameraModal{--cam-accent:#5eead4;z-index:160;padding:14px}
+#cameraModal[data-mode="saida"]{--cam-accent:#fbbf24}
+.cam-modal{
+  width:min(520px,100%);max-height:calc(100dvh - 28px);
+  display:flex;flex-direction:column;overflow:hidden;
+  background:#070a0f;border:1px solid var(--line-2);border-radius:18px;
+  box-shadow:var(--shadow-lg);animation:popIn .18s cubic-bezier(.2,.9,.3,1.2);
+}
+.cam-head{display:flex;align-items:center;gap:9px;padding:9px 11px;border-bottom:1px solid var(--line);background:var(--panel-2);flex-shrink:0}
+.cam-title{display:flex;align-items:center;gap:8px;min-width:0}
+.cam-title b{font-size:11.5px;font-weight:800;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cam-mode{flex-shrink:0;font-size:8px;font-weight:900;letter-spacing:1px;padding:3px 6px;border-radius:5px}
+#cameraModal[data-mode="entrada"] .cam-mode{color:#5eead4;background:rgba(94,234,212,.13);border:1px solid rgba(94,234,212,.35)}
+#cameraModal[data-mode="saida"] .cam-mode{color:#fbbf24;background:rgba(251,191,36,.13);border:1px solid rgba(251,191,36,.35)}
+.cam-head-actions{margin-left:auto;display:flex;gap:5px}
+.cam-head-actions .icon-btn{width:31px;height:31px}
+.cam-stage{position:relative;width:100%;background:#000;overflow:hidden;aspect-ratio:3/4;max-height:60vh;flex-shrink:0}
+.cam-stage video{width:100%;height:100%;display:block;object-fit:cover;background:#000;transition:opacity .2s}
+.cam-stage.video-off video{opacity:0}
+.cam-overlay{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.cam-frame{position:relative;width:78%;height:44%;border-radius:16px;box-shadow:0 0 0 100vmax rgba(0,0,0,.38);overflow:hidden}
+.cam-frame::after{content:"";position:absolute;left:5%;right:5%;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--cam-accent),transparent);box-shadow:0 0 16px var(--cam-accent);animation:camScan 2.4s ease-in-out infinite}
+@keyframes camScan{0%,100%{top:12%}50%{top:86%}}
+.cam-frame i{position:absolute;width:28px;height:28px;border:3px solid var(--cam-accent);z-index:2}
+.cam-frame i.tl{top:0;left:0;border-right:0;border-bottom:0;border-top-left-radius:10px}
+.cam-frame i.tr{top:0;right:0;border-left:0;border-bottom:0;border-top-right-radius:10px}
+.cam-frame i.bl{bottom:0;left:0;border-right:0;border-top:0;border-bottom-left-radius:10px}
+.cam-frame i.br{bottom:0;right:0;border-left:0;border-top:0;border-bottom-right-radius:10px}
+.cam-hud{position:absolute;left:10px;right:10px;bottom:10px;z-index:5;padding:8px 10px;border-radius:9px;background:rgba(7,10,15,.82);border:1px solid rgba(255,255,255,.14);color:#e9eef7;font-size:10.5px;font-weight:600;line-height:1.45;max-height:74px;overflow:auto;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.cam-hud.ok{border-color:rgba(47,191,132,.65);background:rgba(5,32,23,.9);color:#6ee7b7}
+.cam-hud.err{border-color:rgba(239,83,80,.65);background:rgba(40,8,8,.92);color:#fca5a5}
+.cam-hud b{font-weight:800}
+.cam-flash{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0;transition:opacity .25s}
+.cam-flash.show{opacity:1;transition:none}
+.cam-flash.ok{background:rgba(47,191,132,.2);box-shadow:inset 0 0 0 3px rgba(47,191,132,.8)}
+.cam-flash.err{background:rgba(239,83,80,.22);box-shadow:inset 0 0 0 3px rgba(239,83,80,.8)}
+.cam-erro{position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:26px 22px;background:#070a0f;color:var(--txt)}
+.cam-erro-ico{font-size:34px;line-height:1;filter:grayscale(.4);opacity:.85}
+.cam-erro p{font-size:11px;line-height:1.6;color:var(--muted);max-width:380px;margin:0}
+.cam-erro p b{color:var(--txt-2)}
+.cam-erro-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:2px}
+.cam-foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--panel-2);flex-shrink:0}
+.cam-count{font-size:9.5px;font-weight:700;color:var(--muted);white-space:nowrap}
+.cam-count b{font-family:var(--mono);font-size:12px;color:var(--txt)}
+.cam-qty{display:flex;align-items:center;height:30px;border:1px solid var(--line-2);border-radius:8px;overflow:hidden;background:var(--panel-3)}
+.cam-qty button{width:26px;height:100%;border:0;background:transparent;color:var(--txt-2);font-size:14px;font-weight:800;cursor:pointer;line-height:1}
+.cam-qty button:hover{background:rgba(255,255,255,.07)}
+.cam-qty span{min-width:26px;text-align:center;font-family:var(--mono);font-size:11px;font-weight:800}
+.cam-foot-actions{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.cam-foot .btn{height:31px;font-size:11px;padding:0 11px}
+@media(max-width:560px){
+  #cameraModal{padding:0}
+  .cam-modal{width:100%;height:100vh;height:100dvh;max-height:100vh;max-height:100dvh;border:0;border-radius:0}
+  .cam-stage{aspect-ratio:auto;flex:1 1 auto;max-height:none;min-height:0}
+  .cam-frame{width:84%;height:40%}
+  .cam-head{padding-top:calc(9px + env(safe-area-inset-top,0px))}
+  .cam-foot .cam-count{display:none}
+}
+
+/* ============================================================
    10. RELATÓRIO
    ============================================================ */
 .rep-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:11px 16px;border-bottom:1px solid var(--line);background:var(--panel-2);font-size:11px;color:var(--muted)}
@@ -1060,7 +1147,7 @@ footer b{color:var(--muted);font-weight:700}
   <div class="grow"></div>
   <span class="sys"><i></i>Sistema online</span>
   <span class="sync-badge offline" id="syncBadge" onclick="sincronizarAgora()" title="Clique para sincronizar com o Supabase"><i></i><span>Local</span></span>
-  <span class="ver">v5.3</span>
+  <span class="ver">v5.4</span>
   <button class="icon-btn" onclick="toggleTheme()" title="Alternar tema" aria-label="Alternar tema">
     <svg class="ico-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     <svg class="ico-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -1472,7 +1559,7 @@ footer b{color:var(--muted);font-weight:700}
 </main>
 
 <footer>
-  <b>A2B Logística</b> · Sonho dos Pés — Consolidador de Paletes v5.3 · Clientes Compartilhados
+  <b>A2B Logística</b> · Sonho dos Pés — Consolidador de Paletes v5.4 · Clientes Compartilhados
 </footer>
 
 <!-- ============================================================ MODAL DETALHE -->
@@ -1605,13 +1692,34 @@ footer b{color:var(--muted);font-weight:700}
       <div class="scan-step">
         <div class="step-head">
           <span class="step-n">2</span> Bipar pedido ou UE
-          <span class="step-hint" style="color:var(--sky)">auto-detecção</span>
+          <span class="step-hint">scanner · teclado · câmera</span>
         </div>
+
+        <div class="read-bar">
+          <div class="read-switch" role="group" aria-label="Forma de leitura">
+            <button type="button" class="read-mode active" data-rm="scanner" onclick="setReadMode('scanner')" title="Leitor físico (teclado)" aria-pressed="true">
+              <svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8v8M10 8v8M13 8v8M16 8v8M19 8v8"/></svg>
+              Scanner
+            </button>
+            <button type="button" class="read-mode" data-rm="digitar" onclick="setReadMode('digitar')" title="Digitar o código" aria-pressed="false">
+              <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h.01M18 14h.01M9 14h6"/></svg>
+              Digitar
+            </button>
+          </div>
+          <button type="button" class="read-cam" onclick="abrirCamera()" title="Ler pela câmera do celular">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            Câmera
+          </button>
+        </div>
+
         <div class="scan-field" id="scanField">
           <svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8v8M10 8v8M13 8v8M16 8v8M19 8v8"/></svg>
-          <input id="scanInput" placeholder="Aguardando leitura…" autocomplete="off" spellcheck="false" autocapitalize="characters">
+          <input id="scanInput" placeholder="Aguardando leitura do scanner…" autocomplete="off" spellcheck="false" autocapitalize="characters" inputmode="none">
           <span class="s-ok">✓</span>
         </div>
+
+        <button type="button" class="btn ghost sm scan-confirm" id="scanConfirm" onclick="confirmarDigitacao()" hidden>Confirmar código</button>
+
         <div class="scan-help">
           <span>Formatos:</span><code>100050.100050.88</code><code>100334.X0000824.80</code><code>UE00020042</code>
         </div>
@@ -1671,6 +1779,59 @@ footer b{color:var(--muted);font-weight:700}
     </div>
   </div>
 </div>
+
+<!-- ============================================================ LEITOR PELA CÂMERA DO CELULAR -->
+<div class="modal-bg" id="cameraModal" data-mode="entrada">
+  <div class="cam-modal">
+    <div class="cam-head">
+      <div class="cam-title">
+        <b id="camTitle">Câmera · leitura</b>
+        <span class="cam-mode" id="camMode">ENTRADA</span>
+      </div>
+      <div class="cam-head-actions">
+        <button type="button" class="icon-btn" id="camTorch" onclick="toggleTorch()" title="Lanterna / flash" aria-label="Lanterna" hidden>
+          <svg viewBox="0 0 24 24"><path d="M13 2L4.09 12.11a1 1 0 0 0 .75 1.67h5.16l-1 8.22a.5.5 0 0 0 .88.39L20 10.89a1 1 0 0 0-.75-1.67h-5.16l1-8.22a.5.5 0 0 0-.88-.39z"/></svg>
+        </button>
+        <button type="button" class="icon-btn" id="camFlip" onclick="trocarCamera()" title="Trocar câmera" aria-label="Trocar câmera">
+          <svg viewBox="0 0 24 24"><path d="M20 7h-3l-2-3H9L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><circle cx="12" cy="13" r="4"/><path d="M17 4l2 3h-4"/></svg>
+        </button>
+        <button type="button" class="icon-btn" onclick="fecharCamera()" title="Fechar câmera" aria-label="Fechar câmera">✕</button>
+      </div>
+    </div>
+
+    <div class="cam-stage" id="camStage">
+      <video id="camVideo" playsinline webkit-playsinline muted autoplay></video>
+      <div class="cam-overlay">
+        <div class="cam-frame"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+      </div>
+      <div class="cam-hud" id="camHud">Aponte a câmera para o código do pedido ou da UE.</div>
+      <div class="cam-flash" id="camFlash"></div>
+      <div class="cam-erro" id="camErro" hidden>
+        <div class="cam-erro-ico">📷</div>
+        <p id="camErroTxt"></p>
+        <div class="cam-erro-actions">
+          <button type="button" class="btn in sm" onclick="tentarCamera()">Tentar novamente</button>
+          <button type="button" class="btn ghost sm" onclick="fotoCamera()">Tirar foto</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cam-foot">
+      <div class="cam-count"><b id="camCount">0</b> leitura(s) pela câmera</div>
+      <div class="cam-qty" title="Quantidade aplicada a cada leitura">
+        <button type="button" onclick="camStepQty(-1)" aria-label="Diminuir quantidade">−</button>
+        <span id="camQty">1</span>
+        <button type="button" onclick="camStepQty(1)" aria-label="Aumentar quantidade">+</button>
+      </div>
+      <div class="cam-foot-actions">
+        <button type="button" class="btn ghost sm" id="camPhotoBtn" onclick="fotoCamera()">Tirar foto</button>
+        <button type="button" class="btn in sm" id="camDone" onclick="fecharCamera()">Voltar à bipagem</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="camPhotoInput" accept="image/*" capture="environment" hidden>
 
 <div class="toast" id="toast"></div>
 
@@ -2125,6 +2286,7 @@ var state = {
   lastSavedAt: null,
   bip: {
     mode: 'entrada',
+    readMode: 'scanner',
     pallet: null,
     log: [],
     errors: 0,
@@ -3130,6 +3292,7 @@ function confirmarPalletPick(){
 }
 
 function fecharBipagem(){
+  if(typeof CAM !== 'undefined' && CAM.aberta) fecharCamera();
   $('#scanModal').classList.remove('show');
   $('#palletList').classList.remove('open');
   var p = state.bip.pallet;
@@ -3147,12 +3310,68 @@ function setModo(modo){
   $('#btnConcluir').className = 'btn sm ' + (modo === 'entrada' ? 'in' : 'out');
   $('#btnConcluir').textContent = modo === 'entrada' ? 'Concluir entrada' : 'Concluir saída';
   $('#scanTotalLabel').textContent = modo === 'entrada' ? 'volumes entrada' : 'volumes saída';
-  $('#scanInput').placeholder = modo === 'entrada' ? 'Aguardando leitura…' : 'Bipe a UE ou pedido a retirar…';
+  aplicarModoLeitura();
   $('#qtyNote').innerHTML = modo === 'entrada'
     ? 'Aplicada a cada leitura.<br>Enter confirma manualmente.'
     : 'Máximo = saldo físico do palete.';
   $('#scanRows').scrollTop = 0;
   setTimeout(function(){ $('#scanInput').focus(); }, 60);
+}
+
+function aplicarModoLeitura(){
+  var m = state.bip.readMode === 'digitar' ? 'digitar' : 'scanner';
+  state.bip.readMode = m;
+
+  $$('.read-mode').forEach(function(b){
+    var ativo = b.getAttribute('data-rm') === m;
+    b.classList.toggle('active', ativo);
+    b.setAttribute('aria-pressed', ativo ? 'true' : 'false');
+  });
+
+  var inp = $('#scanInput');
+  var conf = $('#scanConfirm');
+  if(conf) conf.hidden = m !== 'digitar';
+  if(!inp) return;
+
+  inp.setAttribute('inputmode', m === 'digitar' ? 'text' : 'none');
+  if(m === 'digitar'){
+    inp.placeholder = state.bip.mode === 'saida'
+      ? 'Digite a UE ou o pedido a retirar…'
+      : 'Digite o pedido ou a UE…';
+  } else {
+    inp.placeholder = state.bip.mode === 'saida'
+      ? 'Bipe a UE ou pedido a retirar…'
+      : 'Aguardando leitura do scanner…';
+  }
+}
+
+function setReadMode(mode){
+  var anterior = state.bip.readMode;
+  state.bip.readMode = mode === 'digitar' ? 'digitar' : 'scanner';
+  aplicarModoLeitura();
+  if(CAM.aberta) return;
+
+  var inp = $('#scanInput');
+  try{ inp.focus(); }catch(e){}
+
+  /* ao voltar do teclado para o scanner no celular, fecha o teclado virtual */
+  if(state.bip.readMode === 'scanner' && anterior === 'digitar' &&
+     window.matchMedia && window.matchMedia('(pointer:coarse)').matches){
+    try{ inp.blur(); }catch(e){}
+    setTimeout(function(){ try{ inp.focus(); }catch(e){} }, 80);
+  }
+}
+
+function confirmarDigitacao(){
+  var inp = $('#scanInput');
+  var code = String(inp.value || '').trim().toUpperCase().replace(/\s+/g, '');
+  if(!code){
+    toast('Digite o código do pedido ou da UE.', 'err');
+    try{ inp.focus(); }catch(e){}
+    return;
+  }
+  submitScan(code);
+  try{ if(!CAM.aberta) inp.focus(); }catch(e){}
 }
 
 function normalizarNomePallet(v){
@@ -5279,6 +5498,592 @@ async function initSupabase(){
 }
 
 /* ============================================================
+   CÂMERA — LEITURA DE CÓDIGO NA BIPAGEM (ENTRADA / SAÍDA)
+   ============================================================ */
+var CAM = {
+  aberta: false,
+  starting: false,
+  run: false,
+  stream: null,
+  video: null,
+  detector: null,
+  zx: null,
+  zxPromise: null,
+  reader: null,
+  timer: null,
+  engine: '',
+  facing: 'environment',
+  torch: false,
+  visto: {},
+  reads: 0,
+  busy: false,
+  falhas: 0,
+  fallback: 0
+};
+CAM.video = document.getElementById('camVideo');
+
+function camApiDisponivel(){
+  return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+}
+
+function despertarAudio(){
+  try{
+    var Ctx = window.AudioContext || window.webkitAudioContext;
+    if(!Ctx) return;
+    if(!beep.ctx) beep.ctx = new Ctx();
+    if(beep.ctx.state === 'suspended') beep.ctx.resume();
+  }catch(e){}
+}
+
+function abrirCamera(){
+  var scan = $('#scanModal');
+  if(!scan || !scan.classList.contains('show')){
+    toast('Abra a bipagem de entrada ou de saída para usar a câmera.', 'err');
+    return;
+  }
+  if(!state.bip.pallet){
+    toast('Defina o palete antes de abrir a câmera.', 'err');
+    return;
+  }
+  if(CAM.aberta) return;
+
+  despertarAudio();
+  CAM.aberta = true;
+  CAM.reads = 0;
+  CAM.visto = {};
+  atualizarCamContador();
+  atualizarCamQty();
+
+  $('#cameraModal').setAttribute('data-mode', state.bip.mode);
+  $('#camMode').textContent = state.bip.mode === 'entrada' ? 'ENTRADA' : 'SAÍDA';
+  $('#camTitle').textContent = 'Câmera · ' + state.bip.pallet.nome;
+  $('#camHud').className = 'cam-hud';
+  $('#camHud').innerHTML = 'Aponte a câmera para o código do pedido ou da UE.';
+  $('#camErro').hidden = true;
+  $('#camStage').classList.remove('video-off');
+  $('#camTorch').hidden = true;
+  $('#camTorch').classList.remove('on');
+  $('#camDone').className = 'btn sm ' + (state.bip.mode === 'entrada' ? 'in' : 'out');
+  $('#cameraModal').classList.add('show');
+  document.body.classList.add('cam-open');
+
+  var inp = $('#scanInput');
+  if(inp){
+    inp.readOnly = true;
+    try{ inp.blur(); }catch(e){}
+  }
+
+  if(window.isSecureContext === false){
+    camFalha('A câmera ao vivo exige <b>HTTPS</b> ou <b>localhost</b>. Este endereço é <b>' + esc(location.host || location.protocol.replace(':', '')) + '</b>.<br><br>Use <b>Tirar foto</b> (abre a câmera do celular e lê a imagem) ou publique o sistema em um endereço https://.');
+    return;
+  }
+  if(!camApiDisponivel()){
+    camFalha('Este navegador não liberou o acesso à câmera neste endereço.<br><br>A câmera ao vivo exige <b>HTTPS</b> ou <b>localhost</b> (você está em <b>' + esc(location.protocol.replace(':', '')) + '</b>). Use <b>Tirar foto</b> para abrir a câmera do celular e ler a imagem, ou abra o sistema por um link https://.');
+    return;
+  }
+  iniciarCamera();
+}
+
+async function iniciarCamera(){
+  if(CAM.starting) return;
+  CAM.starting = true;
+  pararCamera();
+  $('#camErro').hidden = true;
+  $('#camStage').classList.remove('video-off');
+  setCamHud('', 'Abrindo a câmera…');
+
+  try{
+    var constraints = {
+      audio: false,
+      video: {
+        facingMode: {ideal: CAM.facing},
+        width: {ideal: 1280},
+        height: {ideal: 960}
+      }
+    };
+    var stream = null;
+    try{
+      stream = await navigator.mediaDevices.getUserMedia(constraints);
+    }catch(err){
+      if(err && (err.name === 'OverconstrainedError' || err.name === 'NotFoundError')){
+        stream = await navigator.mediaDevices.getUserMedia({audio: false, video: true});
+      } else {
+        throw err;
+      }
+    }
+    if(!CAM.aberta){
+      stream.getTracks().forEach(function(t){ try{ t.stop(); }catch(e){} });
+      return;
+    }
+
+    CAM.stream = stream;
+    CAM.run = true;
+
+    var v = $('#camVideo');
+    v.srcObject = stream;
+    v.muted = true;
+    try{ await v.play(); }catch(e){}
+
+    var track = stream.getVideoTracks()[0];
+    if(track && track.addEventListener){
+      track.addEventListener('ended', function(){
+        if(CAM.aberta && CAM.run) camFalha('A câmera foi encerrada pelo sistema ou por outro aplicativo.<br><br>Toque em <b>Tentar novamente</b> ou use <b>Tirar foto</b>.');
+      });
+    }
+
+    await iniciarMotor();
+    atualizarTorch();
+    atualizarFlip();
+    if(!CAM.run) return;
+    setCamHud('', 'Aponte a câmera para o código do pedido ou da UE.');
+  }catch(e){
+    camFalha(camMensagemErro(e));
+  }finally{
+    CAM.starting = false;
+  }
+}
+
+function camMensagemErro(e){
+  var nome = e && e.name ? e.name : '';
+  if(nome === 'NotAllowedError' || nome === 'SecurityError'){
+    return 'A permissão da câmera foi negada.<br><br>Libere o acesso nas configurações do navegador (cadeado ao lado do endereço) e toque em <b>Tentar novamente</b>, ou use <b>Tirar foto</b>.';
+  }
+  if(nome === 'NotFoundError' || nome === 'DevicesNotFoundError'){
+    return 'Nenhuma câmera foi encontrada neste aparelho.<br><br>Use <b>Tirar foto</b> ou digite o código no campo de leitura.';
+  }
+  if(nome === 'NotReadableError' || nome === 'TrackStartError'){
+    return 'A câmera está ocupada por outro aplicativo.<br><br>Feche o outro app e toque em <b>Tentar novamente</b>.';
+  }
+  if(nome === 'OverconstrainedError'){
+    return 'A câmera deste aparelho não aceitou a configuração solicitada.<br><br>Toque em <b>Tentar novamente</b> ou use <b>Tirar foto</b>.';
+  }
+  return 'Não foi possível abrir a câmera: <b>' + esc(e && e.message ? e.message : e) + '</b>.<br><br>Use <b>Tirar foto</b> ou digite o código.';
+}
+
+function pararCamera(){
+  CAM.run = false;
+  CAM.busy = false;
+  if(CAM.timer){ clearTimeout(CAM.timer); CAM.timer = null; }
+  if(CAM.reader){
+    try{ CAM.reader.reset(); }catch(e){}
+    CAM.reader = null;
+  }
+  if(CAM.stream){
+    CAM.stream.getTracks().forEach(function(t){ try{ t.stop(); }catch(e){} });
+    CAM.stream = null;
+  }
+  var v = CAM.video || $('#camVideo');
+  if(v){
+    try{ v.pause(); }catch(e){}
+    try{ v.srcObject = null; }catch(e){}
+  }
+  CAM.engine = '';
+  CAM.torch = false;
+  CAM.detector = null;
+}
+
+function camFalha(msg){
+  pararCamera();
+  var v = $('#camVideo');
+  if(v){ try{ v.srcObject = null; }catch(e){} }
+  $('#camErroTxt').innerHTML = msg;
+  $('#camErro').hidden = false;
+  $('#camStage').classList.add('video-off');
+  $('#camTorch').hidden = true;
+  $('#camHud').className = 'cam-hud';
+  $('#camHud').textContent = 'Câmera indisponível — use Tirar foto ou feche e digite o código.';
+}
+
+function tentarCamera(){
+  if(!CAM.aberta){
+    abrirCamera();
+    return;
+  }
+  $('#camErro').hidden = true;
+  $('#camStage').classList.remove('video-off');
+  setCamHud('', 'Abrindo a câmera…');
+  iniciarCamera();
+}
+
+function fecharCamera(){
+  if(!CAM.aberta && !$('#cameraModal').classList.contains('show')) return;
+  pararCamera();
+  CAM.aberta = false;
+  $('#cameraModal').classList.remove('show');
+  document.body.classList.remove('cam-open');
+  var inp = $('#scanInput');
+  if(inp){
+    inp.readOnly = false;
+    if(window.matchMedia && window.matchMedia('(pointer:fine)').matches){
+      setTimeout(function(){ try{ inp.focus(); }catch(e){} }, 70);
+    }
+  }
+  if(state.bip.pallet) atualizarInfoPallet(state.bip.pallet);
+  renderLog();
+  renderAll();
+}
+
+async function iniciarMotor(){
+  CAM.detector = null;
+  CAM.reader = null;
+  CAM.engine = '';
+  CAM.falhas = 0;
+  CAM.fallback = 0;
+
+  if('BarcodeDetector' in window){
+    try{
+      var det = await criarDetectorNativo();
+      if(det){
+        CAM.detector = det;
+        CAM.engine = 'native';
+        iniciarLoopNativo();
+        return;
+      }
+    }catch(e){}
+  }
+
+  try{
+    await carregarZXing();
+  }catch(e){
+    throw new Error('Nenhum leitor de código disponível: este navegador não tem leitor nativo e não foi possível carregar o leitor pela internet.<br><br>Use <b>Tirar foto</b> ou digite o código no campo de leitura.');
+  }
+  var Z = CAM.zx;
+  var hints = camHintsZXing(Z);
+  CAM.reader = hints ? new Z.BrowserMultiFormatReader(hints) : new Z.BrowserMultiFormatReader();
+  CAM.engine = 'zxing';
+  iniciarLoopZXing();
+}
+
+function camHintsZXing(Z){
+  try{
+    if(!Z || !Z.DecodeHintType || !Z.BarcodeFormat) return null;
+    var h = new Map();
+    h.set(Z.DecodeHintType.TRY_HARDER, true);
+    var f = [
+      Z.BarcodeFormat.CODE_128, Z.BarcodeFormat.CODE_39, Z.BarcodeFormat.CODE_93,
+      Z.BarcodeFormat.CODABAR, Z.BarcodeFormat.ITF,
+      Z.BarcodeFormat.EAN_13, Z.BarcodeFormat.EAN_8,
+      Z.BarcodeFormat.UPC_A, Z.BarcodeFormat.UPC_E,
+      Z.BarcodeFormat.QR_CODE, Z.BarcodeFormat.DATA_MATRIX, Z.BarcodeFormat.PDF_417
+    ].filter(function(x){ return x != null; });
+    if(f.length) h.set(Z.DecodeHintType.POSSIBLE_FORMATS, f);
+    return h;
+  }catch(e){ return null; }
+}
+
+function carregarZXing(){
+  if(CAM.zx) return Promise.resolve(CAM.zx);
+  if(CAM.zxPromise) return CAM.zxPromise;
+  CAM.zxPromise = new Promise(function(resolve, reject){
+    if(window.ZXing){ resolve(window.ZXing); return; }
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js';
+    s.async = true;
+    s.onload = function(){
+      if(window.ZXing) resolve(window.ZXing);
+      else reject(new Error('ZXing não inicializou'));
+    };
+    s.onerror = function(){ reject(new Error('Falha ao carregar o leitor')); };
+    document.head.appendChild(s);
+  }).then(function(z){
+    CAM.zx = z;
+    return z;
+  }).catch(function(e){
+    CAM.zxPromise = null;
+    throw e;
+  });
+  return CAM.zxPromise;
+}
+
+async function criarDetectorNativo(){
+  var BD = window.BarcodeDetector;
+  if(!BD) return null;
+  var suportadas = [];
+  try{ suportadas = await BD.getSupportedFormats(); }catch(e){ suportadas = []; }
+  var desejadas = ['code_128','code_39','code_93','codabar','itf','ean_13','ean_8','upc_a','upc_e','qr_code','data_matrix','pdf417','aztec'];
+  var usar = suportadas.length ? desejadas.filter(function(f){ return suportadas.indexOf(f) >= 0; }) : desejadas.slice();
+  if(!usar.length) return null;
+  try{ return new BD({formats: usar}); }catch(e){
+    try{ return new BD(); }catch(e2){ return null; }
+  }
+}
+
+function iniciarLoopNativo(){
+  var tick = function(){
+    if(!CAM.run || CAM.engine !== 'native') return;
+    var v = CAM.video || $('#camVideo');
+    if(v && v.readyState >= 2 && v.videoWidth && !CAM.busy){
+      CAM.busy = true;
+      Promise.resolve().then(function(){ return CAM.detector.detect(v); }).then(function(codes){
+        CAM.busy = false;
+        CAM.falhas = 0;
+        if(!CAM.run || !codes || !codes.length) return;
+        var escolha = null;
+        for(var i = 0; i < codes.length; i++){
+          var val = codes[i] && codes[i].rawValue ? String(codes[i].rawValue) : '';
+          if(val && tipoCodigo(normCodigo(val))){ escolha = val; break; }
+        }
+        if(!escolha && codes[0] && codes[0].rawValue) escolha = String(codes[0].rawValue);
+        if(escolha) onCamCode(escolha);
+      }).catch(function(){
+        CAM.busy = false;
+        CAM.falhas++;
+        if(CAM.falhas >= 4 && !CAM.fallback && CAM.run){
+          CAM.fallback = 1;
+          CAM.engine = '';
+          if(CAM.timer){ clearTimeout(CAM.timer); CAM.timer = null; }
+          iniciarFallbackZXing();
+        }
+      });
+    }
+    CAM.timer = setTimeout(tick, 150);
+  };
+  CAM.timer = setTimeout(tick, 120);
+}
+
+async function iniciarFallbackZXing(){
+  try{
+    await carregarZXing();
+    if(!CAM.aberta || !CAM.run) return;
+    var Z = CAM.zx;
+    var hints = camHintsZXing(Z);
+    CAM.reader = hints ? new Z.BrowserMultiFormatReader(hints) : new Z.BrowserMultiFormatReader();
+    CAM.engine = 'zxing';
+    iniciarLoopZXing();
+    setCamHud('', 'Aponte a câmera para o código do pedido ou da UE.');
+  }catch(e){
+    camFalha('O leitor de códigos não conseguiu iniciar pela câmera.<br><br>Use <b>Tirar foto</b> ou digite o código.');
+  }
+}
+
+function iniciarLoopZXing(){
+  var cb = function(result){
+    if(result && result.getText) onCamCode(result.getText());
+  };
+  try{
+    var p = CAM.reader.decodeFromStream(CAM.stream, CAM.video, cb);
+    if(p && p.catch){
+      p.catch(function(e){
+        if(CAM.aberta && CAM.run){
+          camFalha('Falha na leitura pela câmera: <b>' + esc(e && e.message ? e.message : e) + '</b>.<br><br>Use <b>Tirar foto</b> ou digite o código.');
+        }
+      });
+    }
+  }catch(e){
+    camFalha('Falha ao iniciar a leitura pela câmera: <b>' + esc(e && e.message ? e.message : e) + '</b>.<br><br>Use <b>Tirar foto</b> ou digite o código.');
+  }
+}
+
+function onCamCode(raw){
+  var code = normCodigo(raw);
+  if(!code) return;
+
+  var agora = Date.now();
+  var vistoAntes = CAM.visto[code] || 0;
+  CAM.visto[code] = agora;
+  /* a mesma etiqueta parada no enquadramento não soma de novo */
+  if(agora - vistoAntes < 1600) return;
+
+  if(!state.bip.pallet){
+    setCamHud('err', 'Defina o palete antes de bipar.');
+    return;
+  }
+  if(!tipoCodigo(code)){
+    camFlash('err');
+    beep(false);
+    setCamHud('err', 'Código lido: <b>' + esc(code) + '</b><br>Não é um pedido nem uma UE válidos. Aproxime a etiqueta e evite reflexos.');
+    return;
+  }
+
+  var qty = parseInt($('#qtyInput').value, 10) || 1;
+  var antes = state.bip.log.length;
+  try{
+    submitScan(code);
+  }catch(e){
+    setCamHud('err', 'Falha ao tabular: <b>' + esc(e && e.message ? e.message : e) + '</b>.');
+    return;
+  }
+  var aceitou = state.bip.log.length > antes;
+
+  if(aceitou){
+    CAM.reads++;
+    atualizarCamContador();
+    camFlash('ok');
+    vibrar();
+    setCamHud('ok', '✓ ' + (state.bip.mode === 'entrada' ? '+' : '−') + qty + ' volume(s) · <b>' + esc(code) + '</b><br>' + esc(state.bip.pallet.nome) + ' · ' + state.bip.log.length + ' leitura(s) nesta sessão');
+  } else {
+    camFlash('err');
+    var m = $('#scanMsg');
+    setCamHud('err', m && m.innerHTML ? m.innerHTML : 'Leitura recusada. Nada foi tabulado.');
+  }
+}
+
+function setCamHud(tipo, html){
+  var el = $('#camHud');
+  if(!el) return;
+  el.className = 'cam-hud' + (tipo ? ' ' + tipo : '');
+  el.innerHTML = html;
+}
+
+function camFlash(tipo){
+  var el = $('#camFlash');
+  if(!el) return;
+  el.className = 'cam-flash';
+  void el.offsetWidth;
+  el.className = 'cam-flash ' + tipo + ' show';
+  setTimeout(function(){ el.className = 'cam-flash'; }, 220);
+}
+
+function atualizarCamContador(){
+  var el = $('#camCount');
+  if(el) el.textContent = CAM.reads;
+}
+
+function atualizarCamQty(){
+  var el = $('#camQty');
+  if(el) el.textContent = parseInt($('#qtyInput').value, 10) || 1;
+}
+
+function camStepQty(d){
+  stepQty(d);
+  atualizarCamQty();
+}
+
+function vibrar(){
+  try{ if(navigator.vibrate) navigator.vibrate(28); }catch(e){}
+}
+
+function atualizarTorch(){
+  var btn = $('#camTorch');
+  if(!btn) return;
+  var track = CAM.stream && CAM.stream.getVideoTracks ? CAM.stream.getVideoTracks()[0] : null;
+  var caps = {};
+  try{ caps = track && track.getCapabilities ? track.getCapabilities() : {}; }catch(e){ caps = {}; }
+  var tem = !!(caps && caps.torch);
+  btn.hidden = !tem;
+  btn.classList.toggle('on', !!(tem && CAM.torch));
+}
+
+function toggleTorch(){
+  var track = CAM.stream && CAM.stream.getVideoTracks ? CAM.stream.getVideoTracks()[0] : null;
+  if(!track){ toast('Câmera não está ativa.', 'err'); return; }
+  var caps = {};
+  try{ caps = track.getCapabilities ? track.getCapabilities() : {}; }catch(e){ caps = {}; }
+  if(!caps || !caps.torch){
+    toast('Este aparelho não permite acionar a lanterna pelo navegador.', 'warn');
+    return;
+  }
+  CAM.torch = !CAM.torch;
+  track.applyConstraints({advanced: [{torch: CAM.torch}]}).then(function(){
+    $('#camTorch').classList.toggle('on', CAM.torch);
+  }).catch(function(){
+    CAM.torch = false;
+    toast('Não foi possível acionar a lanterna.', 'err');
+  });
+}
+
+async function atualizarFlip(){
+  var btn = $('#camFlip');
+  if(!btn || !navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) return;
+  try{
+    var devs = await navigator.mediaDevices.enumerateDevices();
+    var cams = devs.filter(function(d){ return d.kind === 'videoinput'; });
+    btn.hidden = cams.length < 2;
+  }catch(e){}
+}
+
+function trocarCamera(){
+  if(!CAM.aberta) return;
+  CAM.facing = CAM.facing === 'environment' ? 'user' : 'environment';
+  setCamHud('', 'Trocando de câmera…');
+  iniciarCamera();
+}
+
+function fotoCamera(){
+  var inp = $('#camPhotoInput');
+  if(!inp) return;
+  inp.value = '';
+  inp.click();
+}
+
+function carregarImagem(url){
+  return new Promise(function(resolve, reject){
+    var img = new Image();
+    img.onload = function(){ resolve(img); };
+    img.onerror = function(){ reject(new Error('imagem inválida')); };
+    img.src = url;
+  });
+}
+
+async function decodificarFoto(file){
+  if(!file) return;
+  $('#camErro').hidden = true;
+  $('#camStage').classList.remove('video-off');
+  setCamHud('', 'Analisando a foto…');
+
+  var url = URL.createObjectURL(file);
+  try{
+    var img = await carregarImagem(url);
+    var texto = null;
+
+    if('BarcodeDetector' in window){
+      try{
+        var det = await criarDetectorNativo();
+        if(det){
+          var codes = await det.detect(img);
+          if(codes && codes.length){
+            for(var i = 0; i < codes.length; i++){
+              var val = codes[i] && codes[i].rawValue ? String(codes[i].rawValue) : '';
+              if(val && tipoCodigo(normCodigo(val))){ texto = val; break; }
+            }
+            if(!texto && codes[0] && codes[0].rawValue) texto = String(codes[0].rawValue);
+          }
+        }
+      }catch(e){}
+    }
+
+    if(!texto){
+      try{
+        await carregarZXing();
+        var Z = CAM.zx;
+        var hints = camHintsZXing(Z);
+        var reader = hints ? new Z.BrowserMultiFormatReader(hints) : new Z.BrowserMultiFormatReader();
+        try{
+          var res = await reader.decodeFromImageElement(img);
+          if(res && res.getText) texto = res.getText();
+        }finally{
+          try{ reader.reset(); }catch(e){}
+        }
+      }catch(e){}
+    }
+
+    if(texto){
+      onCamCode(texto);
+    } else {
+      camFlash('err');
+      beep(false);
+      if(!CAM.stream || !CAM.stream.active){
+        camFalha('Não foi possível ler o código nesta foto.<br><br>Aproxime a etiqueta, evite reflexos e toque em <b>Tirar foto</b> novamente, ou tente a câmera ao vivo em <b>Tentar novamente</b>.');
+      } else {
+        setCamHud('err', 'Nenhum código legível nesta foto.<br>Aproxime a etiqueta, evite reflexos e tente novamente.');
+      }
+    }
+  }catch(e){
+    setCamHud('err', 'Falha ao ler a foto: <b>' + esc(e && e.message ? e.message : e) + '</b>.');
+  }finally{
+    try{ URL.revokeObjectURL(url); }catch(e){}
+  }
+}
+
+if($('#camPhotoInput')){
+  $('#camPhotoInput').addEventListener('change', function(){
+    var f = this.files && this.files[0];
+    this.value = '';
+    if(f) decodificarFoto(f);
+  });
+}
+
+/* ============================================================
    NAV / EVENTOS
    ============================================================ */
 function switchTab(name){
@@ -5509,6 +6314,7 @@ $('#retMotivo').addEventListener('input', syncSaidaCampos);
 
 document.addEventListener('keydown', function(e){
   if(e.key === 'Escape'){
+    if($('#cameraModal').classList.contains('show')) { fecharCamera(); return; }
     if($('#printModal').classList.contains('show')) { fecharPDF(); return; }
     if($('#scanModal').classList.contains('show')) { fecharBipagem(); return; }
     if($('#reportModal').classList.contains('show')) { fecharRelatorio(); return; }
