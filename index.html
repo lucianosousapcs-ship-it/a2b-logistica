@@ -299,6 +299,7 @@ tr.row-ue-zero td:first-child{box-shadow:2px 0 0 var(--rose) inset}
 .kpi.k4 .kpi-value{color:var(--sky)}
 .kpi.k5 .kpi-value{color:var(--rose)}
 .kpi-foot{font-size:10.5px;color:var(--muted-2);font-weight:600}
+
 /* ============================================================
    6. PAINÉIS / MAPA
    ============================================================ */
@@ -343,9 +344,7 @@ tr.row-ue-zero td:first-child{box-shadow:2px 0 0 var(--rose) inset}
 .filter-row select:focus{border-color:var(--sky);box-shadow:0 0 0 2px rgba(56,189,248,.12)}
 .map-scroll{max-height:596px;overflow:auto;padding:12px 14px 14px;scroll-behavior:smooth}
 .pallet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(164px,1fr));gap:14px}
-@media(max-width:560px){.pallet-grid{grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:11px}}
-
-/* ============================================================
+@media(max-width:560px){.pallet-grid{grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:11px}}/* ============================================================
    CARDS — 3 CORES FIXAS: VERDE / AMARELO / VERMELHO
    ============================================================ */
 .pcard{
@@ -364,38 +363,30 @@ tr.row-ue-zero td:first-child{box-shadow:2px 0 0 var(--rose) inset}
 }
 .pcard:hover{transform:translateY(-2px);filter:brightness(1.05);box-shadow:0 16px 28px -20px rgba(0,0,0,.95)}
 .pcard:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
-
-/* 🟢 VERDE — fechado / 100% / sem recolher */
 .pcard.c-green{
   --card-bg:#1f9d63; --card-fg:#ffffff;
   --card-mut:rgba(255,255,255,.78);
   --card-line:rgba(255,255,255,.34);
   --card-track:rgba(0,0,0,.18);
 }
-/* 🟡 AMARELO — parcial */
 .pcard.c-yellow{
   --card-bg:#e7b93c; --card-fg:#241a00;
   --card-mut:rgba(36,26,0,.72);
   --card-line:rgba(36,26,0,.3);
   --card-track:rgba(0,0,0,.14);
 }
-/* 🔴 VERMELHO — volumes prontos a recolher (expedição) */
 .pcard.c-red{
   --card-bg:#b11d25; --card-fg:#ffffff;
   --card-mut:rgba(255,255,255,.82);
   --card-line:rgba(255,255,255,.4);
   --card-track:rgba(0,0,0,.22);
 }
-
 .pcard.is-used{box-shadow:0 0 0 2px #0b0f14, 0 0 0 5px #ffffff, 0 12px 24px -16px rgba(0,0,0,.95)}
 .pcard.is-selected{outline:2px solid var(--red);outline-offset:6px}
-
-/* Prioridade = apenas anel amarelo sutil (NÃO muda a cor de fundo) */
 .pcard.prio:not(.c-red):not(.c-yellow){
   box-shadow:0 0 0 2px #f5c542, 0 12px 24px -16px rgba(245,197,66,.5), 0 1px 0 rgba(255,255,255,.16) inset;
 }
 .pcard.prio.is-selected{outline-color:#ffffff}
-
 .pcard.flash{animation:flashCard 1.4s ease}
 @keyframes flashCard{0%,100%{filter:brightness(1)}18%{filter:brightness(1.22)}60%{filter:brightness(1.08)}}
 .pc-head{display:flex;align-items:flex-start;justify-content:space-between;gap:6px}
@@ -409,8 +400,6 @@ tr.row-ue-zero td:first-child{box-shadow:2px 0 0 var(--rose) inset}
 .pc-del svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .pcard.c-yellow .pc-del{background:rgba(36,26,0,.14)}
 .pcard.c-yellow .pc-del:hover{background:rgba(36,26,0,.28)}
-
-/* FONTES DO CARD (aumentadas) */
 .pc-kicker{font-size:8.5px;font-weight:800;letter-spacing:1.3px;color:var(--card-mut);text-transform:uppercase}
 .pc-id{font-family:'Manrope',sans-serif;font-size:25px;font-weight:800;letter-spacing:-1.2px;line-height:1.05;margin-top:1px;color:var(--card-fg)}
 .pc-scan{
@@ -502,7 +491,6 @@ tr.row-ue-zero td:first-child{box-shadow:2px 0 0 var(--rose) inset}
    ============================================================ */
 .table-wrap{overflow:auto}
 table{width:100%;border-collapse:collapse;font-size:12px}
-/* aba Pedidos & UEs: fontes um pouco maiores */
 #pedidos .table-wrap table{font-size:13px}
 #pedidos .table-wrap th{font-size:9.5px}
 #pedidos .table-wrap td{padding-top:11px;padding-bottom:11px}
@@ -511,7 +499,6 @@ table{width:100%;border-collapse:collapse;font-size:12px}
 #pedidos .table-wrap .tag.ue{font-size:10.5px}
 #pedidos .table-wrap .ue-qty{font-size:9px}
 #pedidos .table-wrap .mono{font-size:11.5px}
-
 th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
 th{
   font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);
@@ -786,9 +773,7 @@ td.center,th.center{text-align:center}
 .scan-total{display:flex;align-items:baseline;gap:5px;margin-right:auto}
 .scan-total b{font-family:'Manrope';font-size:24px;font-weight:800;letter-spacing:-1.2px;line-height:1;color:var(--txt)}
 .scan-total span{font-size:8.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);max-width:64px;line-height:1.2}
-.scan-foot .btn{height:35px}
-
-/* ============================================================
+.scan-foot .btn{height:35px}/* ============================================================
    9.5 CÂMERA
    ============================================================ */
 body.cam-open{overflow:hidden}
@@ -1061,7 +1046,11 @@ body.cam-open{overflow:hidden}
 .chkbox{display:inline-block;width:11px;height:11px;border:1.5px solid #000;vertical-align:-1px}
 .pblock-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:3px 8px;border-top:1.5px solid #000;background:#f6f6f6;font-size:7.5px;font-weight:800;letter-spacing:.3px}
 .pblock-foot b{font-size:9px}
-.pblock-also{padding:2px 8px;border-top:1px solid #000;font-size:7px;font-weight:700;background:#fff}
+.pblock-also{padding:4px 8px;border-top:1px solid #000;font-size:7.5px;font-weight:700;background:#fffbe6;line-height:1.5;color:#000}
+.pblock-also .also-title{display:inline-block;font-size:6.5px;letter-spacing:.6px;text-transform:uppercase;font-weight:800;margin-right:6px;color:#000}
+.pblock-also .also-item{display:inline-block;margin:1px 10px 1px 0}
+.pblock-also .also-item b{font-weight:800;color:#000}
+.pblock-also .origem{margin-right:2px;background:#fff}
 .pblock-also b{font-weight:800}
 .pconsol{border:2px solid #000;margin-top:10px;break-inside:avoid;page-break-inside:avoid;background:#fff}
 .pconsol-head{background:#000;color:#fff;padding:5px 9px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -1335,9 +1324,7 @@ body.auth-lock{overflow:hidden}
   <button class="tab" data-tab="usuarios" id="tabUsuarios" hidden>USUÁRIOS &amp; ACESSOS</button>
 </nav>
 
-<main>
-
-<!-- ============================================================ PALETES -->
+<main><!-- ============================================================ PALETES -->
 <section class="page active" id="paletes">
 
   <div class="save-bar">
@@ -1642,8 +1629,7 @@ body.auth-lock{overflow:hidden}
       </table>
     </div>
   </div>
-</section>
-<!-- ============================================================ IMPORTAÇÃO -->
+</section><!-- ============================================================ IMPORTAÇÃO -->
 <section class="page" id="importacao">
   <div class="page-intro">
     <h2>Importação de Pedidos</h2>
@@ -2130,9 +2116,7 @@ body.auth-lock{overflow:hidden}
   </div>
 </div>
 
-<input type="file" id="camPhotoInput" accept="image/*" capture="environment" hidden>
-
-<!-- ============================================================ LOGIN -->
+<input type="file" id="camPhotoInput" accept="image/*" capture="environment" hidden><!-- ============================================================ LOGIN -->
 <div class="modal-bg login-bg" id="loginModal">
   <div class="login-box">
     <div class="login-panel">
@@ -2732,12 +2716,6 @@ function palletSort(a, b){
   return a.num.localeCompare(b.num, 'pt-BR', {numeric:true});
 }
 
-/* ============================================================
-   STATS — 3 CORES (VERDE / AMARELO / VERMELHO)
-   🔴 VERMELHO = há volumes prontos a recolher (expedição)
-   🟡 AMARELO  = parcial (bipou algo, mas não 100%)
-   🟢 VERDE    = fechado / 100% / sem recolher / sem bipagem
-   ============================================================ */
 function stats(p){
   var total = 0, bip = 0, ret = 0, aRec = 0, liberados = 0;
   var prioCount = 0, prioDest = false, prioLoja = '', completoGlobal = false, aging = null, nfData = null;
@@ -2758,20 +2736,16 @@ function stats(p){
     }
   });
   var aberto = Math.max(0, total - bip);
-
-  /* 3 CORES */
   var cor;
   if(p.pedidos.length === 0) cor = null;
   else if(aRec > 0) cor = 'red';
   else if(bip > 0 && total > 0 && bip < total) cor = 'yellow';
   else cor = 'green';
-
   return {
     total: total, bip: bip, ret: ret, aRec: aRec, aberto: aberto,
     cor: cor, ues: p.pedidos.length, pct: pct(bip, total), liberados: liberados,
     prio: prioCount > 0, prioDest: prioDest, prioLoja: prioLoja, prioCount: prioCount,
-    completoGlobal: completoGlobal,
-    aging: aging, nfData: nfData
+    completoGlobal: completoGlobal, aging: aging, nfData: nfData
   };
 }
 
@@ -2791,9 +2765,6 @@ function totais(){
   return t;
 }
 
-/* ============================================================
-   STATE
-   ============================================================ */
 var state = {
   selected: null,
   filter: 'all',
@@ -2822,9 +2793,7 @@ function atualizarBotoesEnvio(){
   if(dot){
     if(!CONNECTED) dot.classList.add('pending'); else dot.classList.remove('pending');
   }
-}
-
-/* ============================================================
+}/* ============================================================
    RENDER — MAPA
    ============================================================ */
 function renderMap(){
@@ -2890,31 +2859,25 @@ function renderMap(){
       var s = stats(p);
       var idx = P.indexOf(p);
       var used = p.used || p.scans > 0;
-
-      /* 🔑 SÓ 3 CLASSES DE COR + realces opcionais */
       var cls = 'pcard c-' + s.cor;
       if(s.prioDest) cls += ' prio';
       if(used) cls += ' is-used';
       if(state.selected === p) cls += ' is-selected';
-
       var rotulo = s.cor === 'red' ? 'A recolher'
                  : s.cor === 'yellow' ? 'Parcial'
                  : (s.bip <= 0 ? 'Aguardando' : 'Fechado');
       if(s.completoGlobal && s.cor === 'green') rotulo = 'Completo';
-
       var badge = '';
       if(p.scans > 0){
         badge = '<span class="pc-scan"><i></i>BIPADO' + (p.scans > 1 ? ' x' + p.scans : '') + '</span>';
       } else if(used){
         badge = '<span class="pc-scan ghost"><i></i>EM USO</span>';
       }
-
       var prio = '';
       if(s.prioDest){
         prio = '<div class="pc-prio"><span class="star">★</span><span class="loja">' + esc(s.prioLoja) +
           '</span><span class="fat">PRIORITÁRIO</span></div>';
       }
-
       var nf = '';
       if(s.nfData || s.aging != null){
         var agCls = s.aging == null ? '' : (s.aging <= 7 ? ' ag-0' : (s.aging <= 15 ? ' ag-1' : (s.aging <= 30 ? ' ag-2' : ' ag-3')));
@@ -2925,7 +2888,6 @@ function renderMap(){
           '</span>' +
         '</div>';
       }
-
       var exp = '';
       if(s.liberados > 0 && s.aRec > 0){
         exp = '<div class="pc-exp" title="Pedido faturado e 100% bipado: ' + s.aRec +
@@ -2936,11 +2898,9 @@ function renderMap(){
           '<span class="exp-vol">' + s.aRec + ' vol</span>' +
         '</div>';
       }
-
       var titulo = p.nome + ' | ' + s.bip + '/' + s.total + ' vol | DATA FATURAMENTO ' + (s.nfData || '-') + ' | aging ' + (s.aging == null ? '-' : s.aging + 'd') +
         (exp ? ' | EXPEDIÇÃO ' + s.aRec + ' vol' : '') +
         (s.completoGlobal ? ' | 100% GLOBAL' : '');
-
       return '<div class="' + cls + '" role="button" tabindex="0" data-idx="' + idx + '" title="' + esc(titulo) + '">' +
         prio +
         '<div class="pc-head">' +
@@ -3068,9 +3028,6 @@ function renderAll(){
   if(active && active.id === 'status') renderStatus();
 }
 
-/* ============================================================
-   CONFIRMAÇÃO
-   ============================================================ */
 var confirmCallback = null;
 function abrirConfirmacao(opts){
   confirmCallback = opts.onConfirm || null;
@@ -3084,9 +3041,6 @@ function abrirConfirmacao(opts){
 function fecharConfirmacao(){ $('#confirmModal').classList.remove('show'); confirmCallback = null; }
 function confirmarAcao(){ var cb = confirmCallback; fecharConfirmacao(); if(cb) cb(); }
 
-/* ============================================================
-   NORMALIZAÇÃO / SNAPSHOT
-   ============================================================ */
 function normalizarPallet(p){
   if(!p || !p.nome || !Array.isArray(p.pedidos)) return null;
   p.nome = String(p.nome).toUpperCase();
@@ -3173,9 +3127,6 @@ function obterOuCriarPallet(nome){
   return p;
 }
 
-/* ============================================================
-   BEEP / BIPAGEM
-   ============================================================ */
 function beep(ok){
   if(!state.bip.sound) return;
   try{
@@ -3784,42 +3735,38 @@ function baseFromStatusUE(st, qty){
   };
 }
 
-/* Placeholder para funções definidas na PARTE 10 */
-function renderPedidos(){ /* PARTE 10 */ }
-function renderStatus(){ /* PARTE 10 */ }
-function abrirDetalhe(){ /* PARTE 10 */ }
-function abrirDetalheIdx(){ /* PARTE 10 */ }
+function renderPedidos(){}
+function renderStatus(){}
+function abrirDetalhe(){}
+function abrirDetalheIdx(){}
 function abrirBipagemIdx(i, modo){ abrirBipagem(modo, P[i]); }
-function limparPalletIdx(){ /* PARTE 10 */ }
-function limparTodosBipados(){ /* PARTE 10 */ }
-function limparBaseStatus(){ /* PARTE 10 */ }
-function limparBasePedidos(){ /* PARTE 10 */ }
-function limparHistoricoAcessos(){ /* PARTE 10 */ }
-function processarStatusColagem(){ /* PARTE 10 */ }
-function processarColagem(){ /* PARTE 10 */ }
-function processarPaletesBipados(){ /* PARTE 10 */ }
-function aplicarImportacao(){ /* PARTE 10 */ }
-function descartarImportacao(){ /* PARTE 10 */ }
-function carregarHistorico(){ /* PARTE 10 */ }
-function abrirRelatorio(){ /* PARTE 10 */ }
-function abrirPDF(){ /* PARTE 10 */ }
-function abrirPDFIdx(){ /* PARTE 10 */ }
-function exportarTXT(){ /* PARTE 10 */ }
-function abrirUesPedido(){ /* PARTE 10 */ }
-function fecharUesPedido(){ /* PARTE 10 */ }
-function fecharDetalhe(){ /* PARTE 10 */ }
-function fecharRelatorio(){ /* PARTE 10 */ }
-function fecharPDF(){ /* PARTE 10 */ }
-function imprimirPDF(){ /* PARTE 10 */ }
-function limparFiltrosPedidos(){ /* PARTE 10 */ }
-function filtrarPedidoPorNumero(){ /* PARTE 10 */ }
-function confirmarCarregarLote(){ /* PARTE 10 */ }
-function switchTab(){ /* PARTE 10 */ }
+function limparPalletIdx(){}
+function limparTodosBipados(){}
+function limparBaseStatus(){}
+function limparBasePedidos(){}
+function limparHistoricoAcessos(){}
+function processarStatusColagem(){}
+function processarColagem(){}
+function processarPaletesBipados(){}
+function aplicarImportacao(){}
+function descartarImportacao(){}
+function carregarHistorico(){}
+function abrirRelatorio(){}
+function abrirPDF(){}
+function abrirPDFIdx(){}
+function exportarTXT(){}
+function abrirUesPedido(){}
+function fecharUesPedido(){}
+function fecharDetalhe(){}
+function fecharRelatorio(){}
+function fecharPDF(){}
+function imprimirPDF(){}
+function limparFiltrosPedidos(){}
+function filtrarPedidoPorNumero(){}
+function confirmarCarregarLote(){}
+function switchTab(){}
 function statusPed(p){ if(p.bipado >= p.esperado) return 'Completo'; if(p.bipado > 0) return 'Parcial'; return 'Pendente'; }
 </script><script>
-/* ============================================================
-   RENDER — PEDIDOS
-   ============================================================ */
 function tagStatus(s){
   var c = s === 'Completo' ? 'ok' : (s === 'Parcial' ? 'warn' : 'err');
   var label = s === 'Completo' ? 'Bipado' : s;
@@ -4064,9 +4011,6 @@ function renderPedidos(){
   body.innerHTML = html;
 }
 
-/* ============================================================
-   RENDER — STATUS
-   ============================================================ */
 function filtrarPedidoPorNumero(n){
   state.pedQuery = n;
   state.pedFilters = {bipado: '', retirado: '', recolher: '', status: '', bipagem: '', itens: '', pallet: ''};
@@ -4143,9 +4087,6 @@ function renderStatus(){
   (totalFiltrado > LIMITE ? '<tr><td colspan="6" style="text-align:center;padding:18px;color:var(--muted);font-weight:700">Mostrando ' + LIMITE + ' de ' + totalFiltrado + '.</td></tr>' : '');
 }
 
-/* ============================================================
-   DETALHE DO PALETE
-   ============================================================ */
 function abrirDetalheIdx(i){ abrirDetalhe(P[i]); }
 
 function abrirDetalhe(p){
@@ -4277,11 +4218,6 @@ function abrirDetalhe(p){
 }
 function fecharDetalhe(){ $('#detailModal').classList.remove('show'); }
 
-/* ============================================================
-   🧹 EXCLUSÕES / LIMPEZAS
-   ============================================================ */
-
-/* 1) Excluir UM palete */
 function limparPalletIdx(i){
   var p = P[i];
   if(!p) return;
@@ -4308,7 +4244,6 @@ function limparPalletIdx(i){
   });
 }
 
-/* 2) Excluir TODOS os paletes */
 function limparTodosBipados(){
   if(!P.length){ toast('Nenhum palete bipado para limpar.', 'err'); return; }
   abrirConfirmacao({
@@ -4335,7 +4270,6 @@ function limparTodosBipados(){
   });
 }
 
-/* 3) 🆕 Limpar base de STATUS */
 function limparBaseStatus(){
   abrirConfirmacao({
     title: 'LIMPAR BASE DE STATUS?',
@@ -4364,7 +4298,6 @@ function limparBaseStatus(){
   });
 }
 
-/* 4) 🆕 Limpar base de PEDIDOS */
 function limparBasePedidos(){
   abrirConfirmacao({
     title: 'LIMPAR BASE DE PEDIDOS?',
@@ -4398,7 +4331,6 @@ function limparBasePedidos(){
   });
 }
 
-/* 5) 🆕 Limpar histórico de ACESSOS */
 function limparHistoricoAcessos(){
   if(!authIsAdmin()){ toast('Acesso restrito ao administrador.', 'err'); return; }
   abrirConfirmacao({
@@ -4423,9 +4355,6 @@ function limparHistoricoAcessos(){
   });
 }
 </script><script>
-/* ============================================================
-   RELATÓRIO / PDF / TXT
-   ============================================================ */
 function coletarRecolhimento(filtroPallet){
   var rows = [];
   var fonte = filtroPallet ? [filtroPallet] : P;
@@ -4469,6 +4398,44 @@ function relacionados(p, incluirDestino){
   return out;
 }
 
+/* ============================================================
+   NOVO — formata "ONDE ESTÃO OS DEMAIS VOLUMES DO MESMO PEDIDO"
+   Retorna { has, html, txt } a partir da função relacionados()
+   ============================================================ */
+function relacionadosParaPallet(p){
+  var rel = relacionados(p, false);
+  if(!rel.length) return {has: false, html: '', txt: ''};
+
+  var byPedido = new Map();
+  rel.forEach(function(r){
+    if(!byPedido.has(r.ped.numero)) byPedido.set(r.ped.numero, []);
+    byPedido.get(r.ped.numero).push(r);
+  });
+
+  var htmlItems = [], txtLines = [];
+  byPedido.forEach(function(entries, numero){
+    var palletsHtml = entries.map(function(it){
+      var nome = it.pallet.prefixo === 'ANÁL' ? 'ANÁL ' + it.pallet.num : 'PALETE ' + it.pallet.num;
+      return '<span class="origem">' + esc(nome) + '</span> <b>' + it.vol + 'v</b>';
+    }).join(' · ');
+    var palletsTxt = entries.map(function(it){
+      var nome = it.pallet.prefixo === 'ANÁL' ? 'ANÁL ' + it.pallet.num : 'PALETE ' + it.pallet.num;
+      return nome + ' (' + it.vol + 'v)';
+    }).join(' · ');
+    htmlItems.push('<span class="also-item"><b>' + esc(numero) + '</b> → ' + palletsHtml + '</span>');
+    txtLines.push('  ' + numero + ' → ' + palletsTxt);
+  });
+
+  return {
+    has: true,
+    html: '<div class="pblock-also">' +
+      '<span class="also-title">📍 Outros volumes deste(s) pedido(s):</span>' +
+      htmlItems.join(' ') +
+    '</div>',
+    txt: 'ONDE ESTÃO OS DEMAIS VOLUMES DOS MESMOS PEDIDOS:\n' + txtLines.join('\n') + '\n'
+  };
+}
+
 function abrirRelatorio(){
   var rows = coletarRecolhimento(null);
   var grupos = agruparPorPallet(rows);
@@ -4495,6 +4462,7 @@ function abrirRelatorio(){
       var total = list.reduce(function(s, r){ return s + r.vol; }, 0);
       var qtdUes = contarUes(list);
       var idx = P.indexOf(p);
+      var relInfo = relacionadosParaPallet(p);
       return '<div class="rgroup' + (st.prioDest ? ' is-prio' : '') + '">' +
         '<div class="rgroup-head">' +
           '<div class="rg-id"><span>' + esc(p.prefixo) + '</span><b>' + esc(p.num) + '</b></div>' +
@@ -4509,6 +4477,11 @@ function abrirRelatorio(){
             '<span class="rrow-vol">' + r.vol + '</span>' +
           '</div>';
         }).join('') +
+        (relInfo.has
+          ? '<div style="padding:8px 16px 10px;background:#fffbe6;border-top:1px solid var(--line);font-size:11px;color:#000;line-height:1.5"><b style="font-weight:800;letter-spacing:.4px;font-size:9px;text-transform:uppercase;display:block;margin-bottom:3px">📍 Outros volumes dos mesmos pedidos</b>' +
+              relInfo.html.replace(/<div class="pblock-also">/,'').replace(/<\/div>$/,'').replace(/<span class="also-title">[^<]*<\/span>/,'') +
+            '</div>'
+          : '') +
       '</div>';
     }).join('');
   }
@@ -4545,6 +4518,10 @@ function exportarTXT(){
       var uesTxt = (r.ues && r.ues.length) ? r.ues.join(' ') : '-';
       out += pad(r.ped.numero, 22) + pad(uesTxt, 34) + pad(r.ped.dest, 28) + pad(r.ped.uf, 4) + pad(r.ped.nf || '-', 6) + pad(r.ped.dataNf || '-', 18) + pad(r.ped.aging == null ? '-' : r.ped.aging + 'd', 6) + r.vol + '\n';
     });
+    var relInfo = relacionadosParaPallet(p);
+    if(relInfo.has){
+      out += '\n' + relInfo.txt;
+    }
     out += '\n';
   });
   var blob = new Blob([out], {type: 'text/plain;charset=utf-8'});
@@ -4603,7 +4580,7 @@ function abrirPDF(filtroPallet){
 
   html += '<div class="pdoc-title">Mapa de Recolhimento</div>';
   html += '<div class="pdoc-order">Ordenação: lojas prioritárias primeiro e, depois, data de faturamento mais antiga (aging).</div>';
-  html += '<div class="pdoc-lead">Recolher os volumes dos <b>paletes destacados</b>. Cada linha mostra o <b>pedido</b>; a <b>UE</b> aparece logo abaixo somente quando o volume já foi bipado.</div>';
+  html += '<div class="pdoc-lead">Recolha os volumes dos <b>paletes destacados</b>. Cada linha mostra o <b>pedido</b>; a <b>UE</b> aparece logo abaixo somente quando o volume já foi bipado. A faixa amarela em cada palete indica <b>onde estão os demais volumes do mesmo pedido</b> — recolha também esses paletes para completar a consolidação.</div>';
 
   html += '<div class="pdoc-stats">' +
     '<div class="cell"><span>Paletes</span><b>' + grupos.length + '</b></div>' +
@@ -4623,6 +4600,9 @@ function abrirPDF(filtroPallet){
       var st = stats(p);
       var nome = p.prefixo === 'ANÁL' ? 'PALETE ANÁL ' + p.num : 'PALETE ' + p.num;
       var qtdUes = contarUes(list);
+
+      var relInfo = relacionadosParaPallet(p);
+
       html += '<div class="pblock">' +
         '<div class="pblock-head">' +
           '<div class="pcode"><span>' + esc(p.prefixo === 'ANÁL' ? 'Palete Anál' : 'Palete') + '</span><b>' + esc(p.num) + '</b></div>' +
@@ -4651,13 +4631,14 @@ function abrirPDF(filtroPallet){
         '</tr>';
       });
       html += '</tbody></table>' +
+        relInfo.html +
         '<div class="pblock-foot"><span>CONFERIDO POR: ______________________________</span><span>' + esc(nome) + ' · <b>' + soma + ' VOL</b></span></div>' +
       '</div>';
     });
     html += '<div class="pdoc-grand"><div class="lbl">Total geral a recolher</div><div class="val">' + fmt(totalVol) + ' volumes</div></div>';
   }
 
-  html += '<div class="pdoc-note"><b>Como usar</b><span>1. Localize o palete pelo cabeçalho destacado. 2. Busque pelo pedido; quando existir, a UE bipada aparece logo abaixo dele. 3. Marque o quadrado OK após recolher.</span></div>';
+  html += '<div class="pdoc-note"><b>Como usar</b><span>1. Localize o palete pelo cabeçalho destacado. 2. Busque pelo pedido; quando existir, a UE bipada aparece logo abaixo dele. 3. Marque o quadrado OK após recolher. 4. <b>Se houver a faixa amarela "Outros volumes deste(s) pedido(s)"</b>, recolha também os volumes nos paletes ali indicados — eles completam a consolidação do mesmo pedido.</span></div>';
   html += '<div class="pdoc-sign"><div class="s"><div class="line"></div>Conferente responsável</div><div class="s"><div class="line"></div>Supervisor de expedição</div></div>';
   html += '<div class="pdoc-footm"><span>A2B Logística · Consolidador de Paletes · Emitido por <b>' + esc(operador) + '</b></span><span>' + esc(docId) + ' · ' + esc(emissao) + '</span></div>';
 
@@ -4667,9 +4648,6 @@ function abrirPDF(filtroPallet){
 function fecharPDF(){ $('#printModal').classList.remove('show'); }
 function imprimirPDF(){ setTimeout(function(){ window.print(); }, 80); }
 </script><script>
-/* ============================================================
-   IMPORTAÇÃO DE PEDIDOS — COLUNAS / PARSERS
-   ============================================================ */
 var IMPORT_COLS = [
   {key:'empresa', label:'Empresa', al:['empresa']},
   {key:'marca', label:'Marca', al:['marca']},
@@ -5120,9 +5098,6 @@ function descartarImportacao(){
   toast('Importação descartada.', 'warn');
 }
 
-/* ============================================================
-   STATUS → SERVIDOR
-   ============================================================ */
 var STATUS_COLS = [
   {key:'numero', al:['numeropedido','numero_pedido','numero do pedido','pedido']},
   {key:'posicao', al:['posicao','posicao_ue','ue','posicao do pedido']},
@@ -5228,9 +5203,6 @@ async function lerStatusArquivo(file){
   }
 }
 
-/* ============================================================
-   PALETES BIPADOS — GRADE → SERVIDOR
-   ============================================================ */
 function extrairCodigosCelula(cell){
   var s = String(cell == null ? '' : cell).toUpperCase();
   var ues = s.match(/UE\d{8}/g) || [];
@@ -5403,9 +5375,6 @@ function lerArquivoPaletes(file){
   }
 }
 
-/* ============================================================
-   HISTÓRICO
-   ============================================================ */
 async function carregarHistorico(){
   if(!SB) return;
   try{
@@ -5453,9 +5422,6 @@ function confirmarCarregarLote(id, arquivo){
   });
 }
 
-/* ============================================================
-   SWITCH TAB + EVENTOS
-   ============================================================ */
 function switchTab(name){
   if(name === 'usuarios' && !authIsAdmin()){ toast('Acesso restrito ao administrador.', 'err'); return; }
   $$('nav.tabs .tab').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-tab') === name); });
@@ -5612,9 +5578,6 @@ document.addEventListener('keydown', function(e){
   if(e.key === 'F2' && $('#scanModal').classList.contains('show')){ e.preventDefault(); $('#scanInput').focus(); }
 });
 </script><script>
-/* ============================================================
-   AUTENTICAÇÃO
-   ============================================================ */
 var AUTH = {
   usersKey: 'a2b_users_cache_v1',
   sessKey: 'a2b_sessao_v1',
@@ -6459,9 +6422,6 @@ function authInit(){
   }, 3000);
 }
 </script><script>
-/* ============================================================
-   CÂMERA — leitura de código na bipagem
-   ============================================================ */
 var CAM = {
   aberta: false, starting: false, run: false, stream: null, video: null,
   detector: null, zx: null, zxPromise: null, reader: null, timer: null,
@@ -6890,12 +6850,7 @@ if($('#camPhotoInput')){
     if(f) decodificarFoto(f);
   });
 }
-</script>
-
-<script>
-/* ============================================================
-   SUPABASE — cliente + leituras + escritas
-   ============================================================ */
+</script><script>
 var SUPABASE_URL = 'https://ilymnjclxrczfylyhotp.supabase.co';
 var SUPABASE_KEY = 'sb_publishable_zbYtkP5t7BJo5b6HVUjw-A_HE213iRK';
 var SB = null;
@@ -7176,9 +7131,6 @@ function registrarGravacao(){ renderSaveBar(); }
 </script>
 
 <script>
-/* ============================================================
-   INIT — boot final
-   ============================================================ */
 (function(){
   var btn = $('#soundBtn');
   if(btn) btn.classList.add('on');
@@ -7236,20 +7188,13 @@ function registrarGravacao(){ renderSaveBar(); }
 <script>
 /* ============================================================
    PATCH — correção do bug .gt('id', 0) na tabela `importacoes`
-   ============================================================
-   `importacoes.id` é UUID → PostgREST devolve 400 em ?id=gt.0.
-   Este patch reescreve as duas funções que usavam essa
-   comparação inválida, trocando por `.not('id','is',null)`,
-   que funciona com qualquer tipo de PK (uuid, bigint, text).
    ============================================================ */
 (function patchImportacoesUUID(){
-
   if(typeof state === 'undefined'){
     setTimeout(patchImportacoesUUID, 300);
     return;
   }
 
-  /* ---------- 1) aplicarImportacao ---------- */
   window.aplicarImportacao = async function(){
     var d = state.importData;
     if(!d || !d.rows || !d.validas){ toast('Importe uma planilha válida primeiro.', 'err'); return; }
@@ -7262,11 +7207,9 @@ function registrarGravacao(){ renderSaveBar(); }
 
     var loteId = null;
     try{
-      /* importacao_itens → bigint — .gt('id',0) funciona */
       var del1 = await SB.from('importacao_itens').delete().gt('id', 0);
       if(del1.error) throw new Error(del1.error.message);
 
-      /* importacoes → UUID — FIX: .not('id','is',null) */
       var del2 = await SB.from('importacoes').delete().not('id', 'is', null);
       if(del2.error) throw new Error(del2.error.message);
 
@@ -7312,7 +7255,6 @@ function registrarGravacao(){ renderSaveBar(); }
     }
   };
 
-  /* ---------- 2) limparBasePedidos ---------- */
   window.limparBasePedidos = function(){
     abrirConfirmacao({
       title: 'LIMPAR BASE DE PEDIDOS?',
@@ -7324,11 +7266,9 @@ function registrarGravacao(){ renderSaveBar(); }
       onConfirm: async function(){
         if(!SB){ toast('Sem conexão com o Servidor.', 'err'); return; }
         try{
-          /* importacao_itens → bigint */
           var d1 = await SB.from('importacao_itens').delete().gt('id', 0);
           if(d1.error) throw new Error(d1.error.message);
 
-          /* importacoes → UUID — FIX */
           var d2 = await SB.from('importacoes').delete().not('id', 'is', null);
           if(d2.error) throw new Error(d2.error.message);
 
