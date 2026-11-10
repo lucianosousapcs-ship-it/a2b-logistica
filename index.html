@@ -298,7 +298,8 @@ tr.row-ue-zero td:first-child{box-shadow:2px 0 0 var(--rose) inset}
 .kpi.k3 .kpi-value{color:var(--amber)}
 .kpi.k4 .kpi-value{color:var(--sky)}
 .kpi.k5 .kpi-value{color:var(--rose)}
-.kpi-foot{font-size:10.5px;color:var(--muted-2);font-weight:600}/* ============================================================
+.kpi-foot{font-size:10.5px;color:var(--muted-2);font-weight:600}
+/* ============================================================
    6. PAINÉIS / MAPA
    ============================================================ */
 .panel{
@@ -532,7 +533,6 @@ td.center,th.center{text-align:center}
 .group-done{font-size:8.5px;font-weight:800;letter-spacing:.6px;padding:3px 7px;border-radius:5px;background:var(--green-soft);color:var(--green);border:1px solid rgba(47,191,132,.35)}
 .pallet-link{color:var(--txt-2);font-weight:700;font-size:10.5px;cursor:pointer;border-bottom:1px dashed var(--line-2);padding-bottom:1px}
 .pallet-link:hover{color:var(--sky);border-color:var(--sky)}
-
 /* ============================================================
    8. MODAIS BASE
    ============================================================ */
@@ -646,7 +646,9 @@ td.center,th.center{text-align:center}
 .dbar-lbl{font-size:10.5px;color:var(--muted);margin-bottom:14px}
 .dactions{display:flex;gap:8px;flex-wrap:wrap;padding:13px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:16px}
 .dsection{font-size:9.5px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;color:var(--muted);margin:0 0 8px;display:flex;align-items:center;gap:8px}
-.dsection::after{content:"";flex:1;height:1px;background:var(--line)}/* ============================================================
+.dsection::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* ============================================================
    9. POPUP VERTICAL DE BIPAGEM
    ============================================================ */
 #scanModal{z-index:130;align-items:center}
@@ -872,7 +874,6 @@ body.cam-open{overflow:hidden}
   .cam-head{padding-top:calc(9px + env(safe-area-inset-top,0px))}
   .cam-foot .cam-count{display:none}
 }
-
 /* ============================================================
    10. RELATÓRIO
    ============================================================ */
@@ -1298,7 +1299,8 @@ body.auth-lock{overflow:hidden}
   .kpis{margin-top:10px}
 }
 </style>
-</head><body><header class="topbar">
+</head><body>
+<header class="topbar">
   <div class="brand">
     <div class="logo" title="A2B Logística">a<span>2</span>b</div>
     <div class="brand-div"></div>
@@ -1480,7 +1482,6 @@ body.auth-lock{overflow:hidden}
     </div>
   </div>
 </section>
-
 <!-- ============================================================ PEDIDOS -->
 <section class="page" id="pedidos">
   <div class="page-intro">
@@ -1641,7 +1642,8 @@ body.auth-lock{overflow:hidden}
       </table>
     </div>
   </div>
-</section><!-- ============================================================ IMPORTAÇÃO -->
+</section>
+<!-- ============================================================ IMPORTAÇÃO -->
 <section class="page" id="importacao">
   <div class="page-intro">
     <h2>Importação de Pedidos</h2>
@@ -1841,7 +1843,6 @@ body.auth-lock{overflow:hidden}
 <footer>
   <b>A2B Logística</b> · Sonho dos Pés — Consolidador de Paletes v7.1 · Clientes Compartilhados · <b>Dados 100% no Servidor</b>
 </footer>
-
 <!-- ============================================================ MODAL DETALHE -->
 <div class="modal-bg" id="detailModal">
   <div class="modal">
@@ -3783,38 +3784,37 @@ function baseFromStatusUE(st, qty){
   };
 }
 
-/* Placeholder para funções definidas na PARTE 7 */
-function renderPedidos(){ /* PARTE 7 */ }
-function renderStatus(){ /* PARTE 7 */ }
-function abrirDetalhe(){ /* PARTE 7 */ }
-function abrirDetalheIdx(){ /* PARTE 7 */ }
+/* Placeholder para funções definidas na PARTE 10 */
+function renderPedidos(){ /* PARTE 10 */ }
+function renderStatus(){ /* PARTE 10 */ }
+function abrirDetalhe(){ /* PARTE 10 */ }
+function abrirDetalheIdx(){ /* PARTE 10 */ }
 function abrirBipagemIdx(i, modo){ abrirBipagem(modo, P[i]); }
-function limparPalletIdx(){ /* PARTE 7 */ }
-function limparTodosBipados(){ /* PARTE 7 */ }
-function limparBaseStatus(){ /* PARTE 7 */ }
-function limparBasePedidos(){ /* PARTE 7 */ }
-function limparHistoricoAcessos(){ /* PARTE 7 */ }
-function processarStatusColagem(){ /* PARTE 7 */ }
-function processarColagem(){ /* PARTE 7 */ }
-function processarPaletesBipados(){ /* PARTE 7 */ }
-function aplicarImportacao(){ /* PARTE 7 */ }
-function descartarImportacao(){ /* PARTE 7 */ }
-function carregarHistorico(){ /* PARTE 7 */ }
-function abrirRelatorio(){ /* PARTE 7 */ }
-function abrirPDF(){ /* PARTE 7 */ }
-function abrirPDFIdx(){ /* PARTE 7 */ }
-function exportarTXT(){ /* PARTE 7 */ }
-function abrirUesPedido(){ /* PARTE 7 */ }
-function fecharUesPedido(){ /* PARTE 7 */ }
-function fecharDetalhe(){ /* PARTE 7 */ }
-function fecharRelatorio(){ /* PARTE 7 */ }
-function fecharPDF(){ /* PARTE 7 */ }
-function imprimirPDF(){ /* PARTE 7 */ }
-function limparFiltrosPedidos(){ /* PARTE 7 */ }
-function filtrarPedidoPorNumero(){ /* PARTE 7 */ }
-function carregarHistorico(){ /* PARTE 7 */ }
-function confirmarCarregarLote(){ /* PARTE 7 */ }
-function switchTab(){ /* PARTE 7 */ }
+function limparPalletIdx(){ /* PARTE 10 */ }
+function limparTodosBipados(){ /* PARTE 10 */ }
+function limparBaseStatus(){ /* PARTE 10 */ }
+function limparBasePedidos(){ /* PARTE 10 */ }
+function limparHistoricoAcessos(){ /* PARTE 10 */ }
+function processarStatusColagem(){ /* PARTE 10 */ }
+function processarColagem(){ /* PARTE 10 */ }
+function processarPaletesBipados(){ /* PARTE 10 */ }
+function aplicarImportacao(){ /* PARTE 10 */ }
+function descartarImportacao(){ /* PARTE 10 */ }
+function carregarHistorico(){ /* PARTE 10 */ }
+function abrirRelatorio(){ /* PARTE 10 */ }
+function abrirPDF(){ /* PARTE 10 */ }
+function abrirPDFIdx(){ /* PARTE 10 */ }
+function exportarTXT(){ /* PARTE 10 */ }
+function abrirUesPedido(){ /* PARTE 10 */ }
+function fecharUesPedido(){ /* PARTE 10 */ }
+function fecharDetalhe(){ /* PARTE 10 */ }
+function fecharRelatorio(){ /* PARTE 10 */ }
+function fecharPDF(){ /* PARTE 10 */ }
+function imprimirPDF(){ /* PARTE 10 */ }
+function limparFiltrosPedidos(){ /* PARTE 10 */ }
+function filtrarPedidoPorNumero(){ /* PARTE 10 */ }
+function confirmarCarregarLote(){ /* PARTE 10 */ }
+function switchTab(){ /* PARTE 10 */ }
 function statusPed(p){ if(p.bipado >= p.esperado) return 'Completo'; if(p.bipado > 0) return 'Parcial'; return 'Pendente'; }
 </script><script>
 /* ============================================================
@@ -4422,7 +4422,7 @@ function limparHistoricoAcessos(){
     }
   });
 }
-
+</script><script>
 /* ============================================================
    RELATÓRIO / PDF / TXT
    ============================================================ */
@@ -6458,9 +6458,7 @@ function authInit(){
     }
   }, 3000);
 }
-</script>
-
-<script>
+</script><script>
 /* ============================================================
    CÂMERA — leitura de código na bipagem
    ============================================================ */
@@ -7235,6 +7233,125 @@ function registrarGravacao(){ renderSaveBar(); }
   });
 })();
 </script>
+<script>
+/* ============================================================
+   PATCH — correção do bug .gt('id', 0) na tabela `importacoes`
+   ============================================================
+   `importacoes.id` é UUID → PostgREST devolve 400 em ?id=gt.0.
+   Este patch reescreve as duas funções que usavam essa
+   comparação inválida, trocando por `.not('id','is',null)`,
+   que funciona com qualquer tipo de PK (uuid, bigint, text).
+   ============================================================ */
+(function patchImportacoesUUID(){
 
+  if(typeof state === 'undefined'){
+    setTimeout(patchImportacoesUUID, 300);
+    return;
+  }
+
+  /* ---------- 1) aplicarImportacao ---------- */
+  window.aplicarImportacao = async function(){
+    var d = state.importData;
+    if(!d || !d.rows || !d.validas){ toast('Importe uma planilha válida primeiro.', 'err'); return; }
+    if(!SB){ toast('Sem conexão com o Servidor.', 'err'); return; }
+
+    var btn = $('#btnAplicar');
+    btn.disabled = true;
+    btn.textContent = 'Gravando no Servidor…';
+    setDbHint('<b>Gravando…</b> não feche esta janela.', 'warn');
+
+    var loteId = null;
+    try{
+      /* importacao_itens → bigint — .gt('id',0) funciona */
+      var del1 = await SB.from('importacao_itens').delete().gt('id', 0);
+      if(del1.error) throw new Error(del1.error.message);
+
+      /* importacoes → UUID — FIX: .not('id','is',null) */
+      var del2 = await SB.from('importacoes').delete().not('id', 'is', null);
+      if(del2.error) throw new Error(del2.error.message);
+
+      var lote = {
+        arquivo: d.nome, formato: d.formato || 'XLSX',
+        linhas: d.rows.length, linhas_validas: d.validas, linhas_ignoradas: d.ignoradas,
+        volumes: d.volumes, valor_total: d.valor, aging_max: d.agingMax || 0,
+        status: 'PROCESSANDO', usuario_id: sb.uid || null
+      };
+      var ins = await SB.from('importacoes').insert(lote).select('id').single();
+      if(ins.error) throw ins.error;
+      loteId = ins.data.id;
+
+      var payload = d.rows.map(function(r){ return itemPayload(r, loteId); });
+      for(var i = 0; i < payload.length; i += 200){
+        var chunk = payload.slice(i, i + 200);
+        var resItens = await SB.from('importacao_itens').insert(chunk);
+        if(resItens.error) throw resItens.error;
+      }
+
+      var rec = await SB.rpc('recalcular_importacao', {p_importacao_id: loteId});
+      if(rec.error) throw rec.error;
+
+      var up = await SB.from('importacoes')
+        .update({ status: 'APLICADA', aplicada_em: new Date().toISOString() })
+        .eq('id', loteId);
+      if(up.error) throw up.error;
+
+      await loadBaseFromDB();
+      renderAll();
+      await carregarHistorico(true);
+
+      setDbHint('Importação <b>' + esc(d.nome) + '</b> gravada no Servidor: <b>' + d.validas + '</b> pedidos e <b>' + fmt(d.volumes) + '</b> volumes.', 'ok');
+      toast('Importação gravada no Servidor e telas atualizadas.', '');
+      switchTab('paletes');
+    }catch(e){
+      if(loteId){ try{ await SB.from('importacoes').delete().eq('id', loteId); }catch(_){} }
+      setDbHint('Falha ao gravar no Servidor: <b>' + esc(lerErro(e)) + '</b>', 'err');
+      toast('Falha ao gravar: ' + lerErro(e), 'err');
+    }finally{
+      btn.disabled = false;
+      btn.textContent = 'Aplicar e gravar no Servidor';
+    }
+  };
+
+  /* ---------- 2) limparBasePedidos ---------- */
+  window.limparBasePedidos = function(){
+    abrirConfirmacao({
+      title: 'LIMPAR BASE DE PEDIDOS?',
+      text: 'Todos os lotes de importação (<b>importacoes</b> e <b>importacao_itens</b>) serão excluídos do Servidor.<br><br>' +
+            'Os paletes bipados <b>não serão alterados</b>.<br><br>' +
+            '<b>Esta ação não pode ser desfeita.</b>',
+      ok: 'SIM, LIMPAR PEDIDOS',
+      danger: true,
+      onConfirm: async function(){
+        if(!SB){ toast('Sem conexão com o Servidor.', 'err'); return; }
+        try{
+          /* importacao_itens → bigint */
+          var d1 = await SB.from('importacao_itens').delete().gt('id', 0);
+          if(d1.error) throw new Error(d1.error.message);
+
+          /* importacoes → UUID — FIX */
+          var d2 = await SB.from('importacoes').delete().not('id', 'is', null);
+          if(d2.error) throw new Error(d2.error.message);
+
+          BASE = [];
+          rebuildBase();
+          state.importData = null;
+          state.importQuery = '';
+          var ir = $('#importResult'); if(ir) ir.hidden = true;
+          var fi = $('#filtroImport'); if(fi) fi.value = '';
+          var ip = $('#importHistoryPanel'); if(ip) ip.hidden = true;
+          renderImportResumo();
+          renderAll();
+          setDbHint('Base de pedidos limpa no Servidor.', 'ok');
+          toast('Base de pedidos excluída do Servidor.', 'warn');
+        }catch(e){
+          toast('Falha ao limpar pedidos: ' + lerErro(e), 'err');
+        }
+      }
+    });
+  };
+
+  console.log('%c[PATCH OK] aplicarImportacao e limparBasePedidos corrigidos para UUID.', 'color:#2fbf84;font-weight:bold');
+})();
+</script>
 </body>
 </html>
